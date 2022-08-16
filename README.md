@@ -49,7 +49,6 @@ Action definition
 | actionTranslations  | Dictionary<string, string>  | Translations for action title  |   |
 | url  | string  | Url to open in default browser  |   |
 | powershellFile  | string  | Powershell file to execute  |  | powershellFile  | string  | Powershell file to execute  |   |
- |
 | keyCombo  | string  | Key (combo) to press  |  Definition [here](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=netframework-4.7.2)  |
 |  after |  string | An action can perform an event after it has been executed. This is mainly used by powershell files (see below)  | values: PASTE_RESULT SHOW_RESULT SHOW_SUCCESS COPY_RESULT  |
 | longRunning  | bool  | shows a spinning circle to indicate the action takes time  |   |
