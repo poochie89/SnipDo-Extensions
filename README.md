@@ -1,3 +1,20 @@
+SnipDo on Github
+--------
+Feel free to share your own extensions here  :heart:
+Lets make SnipDo bigger together
+
+
+- [Overview](#overview)
+- [Extension definition](#extension-definition)
+- [Action definition](#action-definition)
+  * [Open URL action](#open-url-action)
+  * [Press Key(s)](#press-keys)
+  * [Execute Powershell script](#execute-powershell-script)
+- [AppOption definition:](#appoption-definition)
+  * [List of strings](#list-of-strings)
+  * [Powershell File](#powershell-file)
+
+
 Overview
 --------
 
@@ -12,200 +29,36 @@ The following tables shows the properties in the .json file. 
 Extension definition
 --------------------
 
-### Key
+|  Key | Type  | Description  | Notes  |
+| ------------ | ------------ | ------------ | ------------ |
+| name  |  string (required)  |  Name of the extension |   |
+| identifier  | string (required)  | An unique id for this extension (f.e myextension.myname)  |   |
+| actions  | List<Actions> (required)  | A list of available Actions   |  See Action definition below |
+| icon  |  string |  name of the icon (f.e. "icon.png") |  Place icon in same folder |
+| extensionTranslations  |  Dictionary<string, string> | Translations for extension name  |   |
+|  requiredAppVersion |  string |  Minimum required App version |  full version required (f.e. 1.5.3.0) |
+| requiredOSVersion  | string  | Minimum required Operating System version  | Definition [here](https://stackoverflow.com/questions/2819934/detect-windows-version-in-net) (Major version .Minor version )  |
 
-### Type
-
-### Description
-
-### Notes
-
-name
-
-string (required)
-
-Name of the extension
-
-identifier
-
-string (required)
-
-An unique id for this extension (f.e myextension.myname)
-
- 
-
-actions
-
-List<Actions> (required)
-
-A list of available Actions 
-
-See Action definition below
-
-icon
-
-string
-
-name of the icon (f.e. "icon.png")
-
-Place icon in same folder
-
-extensionTranslations
-
-Dictionary<string, string>
-
-Translations for extension name
-
- 
-
-requiredAppVersion
-
-string
-
-Minimum required App version
-
-full version required (f.e. 1.5.3.0)
-
-requiredOSVersion
-
-string
-
-Minimum required Operating System version
-
-Definition [here](https://stackoverflow.com/questions/2819934/detect-windows-version-in-net) (Major version .Minor version )
 
 Action definition
 -----------------
+| Key  | Type  | Description  | Notes  |
+| ------------ | ------------ | ------------ | ------------ |
+| title  | string(required)  | Title of the action  |   |
+|  icon | string  | name of the action (f.e. "icon.png")  |  Place icon in same folder |
+| actionTranslations  | Dictionary<string, string>  | Translations for action title  |   |
+| url  | string  | Url to open in default browser  |   |
+| powershellFile  | string  | Powershell file to execute  |  | powershellFile  | string  | Powershell file to execute  |   |
+ |
+| keyCombo  | string  | Key (combo) to press  |  Definition [here](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=netframework-4.7.2)  |
+|  after |  string | An action can perform an event after it has been executed. This is mainly used by powershell files (see below)  | values: PASTE_RESULT SHOW_RESULT SHOW_SUCCESS COPY_RESULT  |
+| longRunning  | bool  | shows a spinning circle to indicate the action takes time  |   |
+|  options | List<AppOption>  | Options available for user to configure action  | See AppOption definition below  |
+|  regex | string  | Show action only if the text satisfies this regular expression   |   |
+|  requirements | List<string>  | Show action only if the text satisfies the listed requirements  |  values: HAS_URL IS_URL EMAIL FILEPATH |
+|  noShowApps | List<string>  | Process names where the action does not show |  requires app version 1.5.4.0 |
+| showOnlyApps  | List<string>  | Process names where the action only shows  | requires app version 1.5.4.0  |
 
-Key
----
-
-Type
-----
-
-Description
------------
-
-Notes
------
-
-title
-
-string (required)
-
-Title of the action
-
-icon
-
-string
-
-name of the action (f.e. "icon.png")
-
-Place icon in same folder
-
-actionTranslations
-
-Dictionary<string, string>
-
-Translations for action title
-
- 
-
-url
-
-string
-
-Url to open in default browser
-
- 
-
-powershellFile
-
-string
-
-Powershell file to execute
-
-Place powershell file in same folder
-
-keyCombo
-
-string
-
-Key (combo) to press
-
-Definition [here](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=netframework-4.7.2)
-
-after
-
-string
-
-An action can perform an event after it has been executed. This is mainly used by powershell files (see below)
-
-values:
-
-PASTE\_RESULT
-
-SHOW\_RESULT
-
-SHOW\_SUCCESS
-
-COPY\_RESULT
-
-longRunning
-
-bool
-
-shows a spinning circle to indicate the action takes time
-
- 
-
-options
-
-List<AppOption>
-
-Options available for user to configure action
-
-See AppOption definition below
-
-regex
-
-string
-
-Show action only if the text satisfies this regular expression
-
- 
-
-requirements
-
-List<string>
-
-Show action only if the text satisfies the listed requirements
-
-values:
-
-HAS\_URL
-
-IS\_URL
-
-EMAIL
-
-FILEPATH
-
-noShowApps
-
-List<string>
-
-Process names where the action does not show
-
-requires app version 1.5.4.0
-
-showOnlyApps
-
-List<string>
-
-Process names where the action only shows
-
-requires app version 1.5.4.0
 
 Each action is one of several available action types. If one of these keys is set the other action types will be ignored.
 
@@ -229,7 +82,7 @@ PANTHERBAR\_PLAIN\_TEXT passes the text plain, PANTHERBAR\_URLENCODED\_TEXT pas
 
 APPOPTION IDENTIFIER passes the value the user set for the AppOption (see below for more infos on AppOptions)
 
-### Press Key(s)
+### Press Keys
 
 Specify a Keycombination string as specifed in [this](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=netframework-4.7.2) Microsoft Docs. , The combination will be send to the active window when the action is executed.
 
@@ -262,40 +115,14 @@ If you want to use external Assemblies in the script place them in the same fol
 
 > Add-Type -Path $PSScriptRoot\\assembly.dll
 
-AppOption definition:
+AppOption definition
 ---------------------
+|  Key | Type  | Description  | Notes  |
+| ------------ | ------------ | ------------ | ------------ |
+| identifier  |  string (required) |  An unique id for this option |   |
+|  values | Dictionary<string, string>  | A list of texts, the user can choose from  |   |
+| powershellFile  | string  | name of the powershell option file  | Place file in same folder  |
 
-### Key
-
-### Type
-
-### Description
-
-### Notes
-
-identifier
-
-string (required)
-
-An unique id for this option
-
- 
-
-values
-
-Dictionary<string, string>
-
-A list of texts, the user can choose from
-
- 
-
-powershellFile
-
-string
-
-name of the powershell option file
-
-Place file in same folder
 
 When defining an option, the user has to set an option before executing the action. An option can either be a
 
