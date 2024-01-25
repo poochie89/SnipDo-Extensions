@@ -131,10 +131,10 @@ You can access these paramters in the scripts simply by its name:
 
 SnipDo uses the Python output pipeline to get results from the script. If you want to signal an error to SnipDo use:
 
-> print("This is an error message", file=sys.stderr)
+> raise ValueError("This is a custom error message")
 
 
-If one error is seen by SnipDo, it will show a red cross signaling an error to the user. If you want to pass a successfull value to SnipDo use the orint method. You can then show the result or paste it by setting the after key for your action. 
+If one error is seen by SnipDo, it will show a red cross signaling an error to the user. If you want to pass a successfull value to SnipDo use the print method. You can then show the result or paste it by setting the after key for your action. 
 
 > print("This is a message", end="")
 
