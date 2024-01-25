@@ -136,7 +136,7 @@ SnipDo uses the Python output pipeline to get results from the script. If you wa
 
 If one error is seen by SnipDo, it will show a red cross signaling an error to the user. If you want to pass a successfull value to SnipDo use the orint method. You can then show the result or paste it by setting the after key for your action. 
 
-> Write-Output print("This is a message")
+> print("This is a message", end="")
 
 
 
