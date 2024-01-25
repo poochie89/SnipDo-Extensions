@@ -114,6 +114,32 @@ If you want to use external Assemblies in the script place them in the same fol
 
 > Add-Type -Path $PSScriptRoot\\assembly.dll
 
+
+### Execute Python script 
+
+SnipDo uses IronPython to execute scripts. Not all current Python features may be supported in Ironpython. When defining a Python script, SnipDo passes several paramters to the script. The paramters are:
+
+*   PLAIN\_TEXT (string)
+*   URLENCODED\_TEXT (string)
+*   HTMLENCODED\_TEXT (string)
+*   URLS (string\[\])
+*   APPOPTION\_IDENTIFIER (string)
+
+You can access these paramters in the scripts simply by its name:
+
+> PLAIN\_TEXT
+
+SnipDo uses the Python output pipeline to get results from the script. If you want to signal an error to SnipDo use:
+
+> print("This is an error message", file=sys.stderr)
+
+
+If one error is seen by SnipDo, it will show a red cross signaling an error to the user. If you want to pass a successfull value to SnipDo use the orint method. You can then show the result or paste it by setting the after key for your action. 
+
+> Write-Output print("This is a message")
+
+
+
 AppOption definition
 ---------------------
 |  Key | Type  | Description  | Notes  |
