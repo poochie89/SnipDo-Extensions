@@ -10,6 +10,7 @@ Lets make SnipDo bigger together
   * [Open URL action](#open-url-action)
   * [Press Key(s)](#press-keys)
   * [Execute Powershell script](#execute-powershell-script)
+  * [Execute Python script](#execute-python-script)
 - [AppOption definition:](#appoption-definition)
   * [List of strings](#list-of-strings)
   * [Powershell File](#powershell-file)
